@@ -2,53 +2,43 @@ package com.example.account
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.view.MenuItem
+import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.example.account.Stock
-import kotlin.reflect.typeOf
+import com.example.account.navigation.SummaryFragment
+import com.example.account.navigation.MyAccountFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
-
-    lateinit var User_Info_Frag: User_Info_page
-    val manager = supportFragmentManager
-    var Stocks_List = ArrayList<Stock>()
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        println("Switch entered!")
+        when (item.itemId) {
+            R.id.action_my_account -> {
+                var my_account_fragment = MyAccountFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_content, my_account_fragment).commit()
+                //Toast.makeText(this@MainActivity, "1st page!", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.action_summary -> {
+                var summary_fragment = SummaryFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_content, summary_fragment).commit()
+                return true
+            }
+//            R.id.action_extra->{
+//                var my_account_fragment = MyAccountFragment()
+//                supportFragmentManager.beginTransaction().replace(R.id.main_content,my_account_fragment).commit()
+//                return true
+//            }
+        }
+        return false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        var viewer : TextView = findViewById(R.id.show_stock)
-        Stocks_List.add(Stock("삼성전자", 2,83000.0))
-
-        viewer.setText(Stocks_List[0].toString())
-
-
-        var btn_add = findViewById<Button>(R.id.add_button)
-        btn_add.setOnClickListener(){
-            var name_btn = findViewById<EditText>(R.id.input_name)
-            var count_btn = findViewById<EditText>(R.id.input_count)
-            var price_btn = findViewById<EditText>(R.id.input_price)
-
-            Stocks_List.add(Stock(name_btn.text.toString(),
-                    count_btn.text.toString().toInt(),
-                    price_btn.text.toString().toDouble()))
-
-            name_btn.text.clear()
-            count_btn.text.clear()
-            price_btn.text.clear()
-            Toast.makeText(this@MainActivity,"추가되었어요!",Toast.LENGTH_SHORT).show()
-        }
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener(this)
+        println("onCreate entered!")
     }
-
-    fun ShowTabOne(){
-        val transaction = manager.beginTransaction()
-        val fragment = User_Info_page()
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
-
-
 }

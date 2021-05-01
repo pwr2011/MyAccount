@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_summary"
+        android:title="총 자산 보기"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/action_my_account"
+        android:title="내 계좌 보기"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/action_extra"
+        android:title="Extra"
+        android:enabled="true"/>
+</menu>
