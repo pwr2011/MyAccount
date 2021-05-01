@@ -14,7 +14,7 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    var stock_list = ArrayList<Stock>()
+    var stock_list = ArrayList<String>()
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -46,13 +46,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener(this)
     }
 
+    //수정중
     fun Load_file(){
         try {
             val file = File(filesDir, "UserData.txt")
             if (file.exists()) {
                 file.bufferedReader().useLines {
-                    lines->lines.forEach { stock_list.add(it.) }
+                    lines->lines.forEach { stock_list.add(it) }
                 }
+                stock_list.forEach{println("it\n")}
             }
             else{
                 file.createNewFile()

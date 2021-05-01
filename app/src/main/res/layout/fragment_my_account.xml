@@ -22,6 +22,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/my_account_add_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="계좌 추가" />
