@@ -5,17 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".navigation.MyAccountFragment">
-
 
     <LinearLayout
         android:id="@+id/my_account_top_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -25,70 +23,70 @@
             android:id="@+id/my_account_add_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="계좌 추가" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/my_account_division_bar"
-        app:layout_constraintTop_toBottomOf="@id/my_account_top_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:id="@+id/account_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_account_division_bar">
+        android:stretchColumns="*"
+        app:layout_constraintTop_toBottomOf="@+id/my_account_top_bar">
 
-        <LinearLayout
-            android:id="@+id/mini_bar1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+<!--        <TableRow-->
+<!--            android:id="@+id/account_table_upper"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+<!--            <TextView-->
+<!--                android:id="@+id/account_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10sp"-->
+<!--                android:textSize="30sp" />-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="계좌 관리" />
-        </LinearLayout>
+<!--            <View-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/mini_bar1">
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10sp"-->
+<!--                android:text="주식 추가" />-->
+<!--        </TableRow>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="삼성증권"
-                android:textSize="30sp" />
+<!--        <TableRow-->
+<!--            android:id="@+id/account_table_bottom"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="left"-->
+<!--                android:layout_marginLeft="10sp"-->
+<!--                android:text="총 잔고"-->
+<!--                android:textSize="30sp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="5'000'000"
-                android:textSize="30sp" />
-        </LinearLayout>
-    </LinearLayout>
+<!--            <View-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1" />-->
 
+<!--            <TextView-->
+<!--                android:id="@+id/account_balance"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="right"-->
+<!--                android:layout_marginRight="10sp"-->
+<!--                android:textSize="30sp" />-->
 
+<!--        </TableRow>-->
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

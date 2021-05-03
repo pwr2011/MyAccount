@@ -2,15 +2,10 @@ package com.example.account
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.ColorSpace.get
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.account.navigation.SummaryFragment
@@ -68,7 +63,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 1->{
                     if(data!!.hasExtra("company")){
                         var company_name = data!!.getStringExtra("company").toString()
-                        my_account_array.add(Company(company_name, ArrayList<Stock>()))
+                        my_account_array.add(Company(company_name, 0.0,ArrayList<Stock>()))
                         Write_Company_Append("\n"+company_name)
                     }
                     else{
@@ -125,7 +120,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         println(line)
                         val company_name = line.toString()
                         if(company_name.length>0) {
-                            my_account_array.add(Company(company_name,ArrayList<Stock>()))
+                            my_account_array.add(Company(company_name,0.0,ArrayList<Stock>()))
                         }
                     }
                 }
@@ -145,7 +140,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             val file = File(filesDir, "UserStockData.txt")
             if (file.exists()) {
                 println("Load User Stock Data file")
-                println(file.path)
                 file.bufferedReader().useLines { lines ->
                     lines.forEach {
                         line->
@@ -153,7 +147,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         val data = line.split(" ")
                         var company = my_account_array.find({it.name==data[0]})
                         if(company != null) {
-                            company!!.own.add(Stock(data[1], data[2].toInt(), data[3].toDouble()))
+                            company.total+=(data[2].toInt()*data[3].toDouble())
+                            company.own.add(Stock(data[1], data[2].toInt(), data[3].toDouble()))
                         }
                     }
                 }
