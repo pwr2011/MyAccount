@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         Toast.makeText(this,"전달된 이름에 오류가 있다.",Toast.LENGTH_SHORT).show()
                     }
                 }
+                2->{
+
+                    Toast.makeText(this,"정보 수정 완료",Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

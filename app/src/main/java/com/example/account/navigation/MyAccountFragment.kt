@@ -47,7 +47,12 @@ class MyAccountFragment : Fragment() {
             row_bottom.account_balance.setText((i.total).toString())
 
             row_upper.edit_stock_button.setOnClickListener{
-
+                activity?.let {
+                    val intent = Intent(it, EditMyAccount::class.java)
+                    println("send : "+row_upper.account_name.text.toString())
+                    intent.putExtra("company_name", row_upper.account_name.text.toString())
+                    it.startActivityForResult(intent, 2)
+                }
             }
 
             account_table.addView(row_upper)
