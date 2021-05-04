@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.account.R
 
-class EditMyAccountFragment : Fragment() {
+class Edit_account_fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

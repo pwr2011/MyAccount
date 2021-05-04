@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".editaccountpage.AddCountActivity">
+    tools:context=".editaccountpage.Add_account_activity">
 
     <LinearLayout
         android:layout_marginTop="20sp"

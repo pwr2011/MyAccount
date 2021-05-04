@@ -49,7 +49,7 @@ class add_account_fragment : Fragment() {
 
             row_upper.edit_stock_button.setOnClickListener{
                 activity?.let {
-                    val intent = Intent(it, EditMyAccount::class.java)
+                    val intent = Intent(it, Edit_account_activity::class.java)
                     println("send : "+row_upper.account_name.text.toString())
                     intent.putExtra("company_name", row_upper.account_name.text.toString())
                     it.startActivityForResult(intent, 2)
@@ -63,7 +63,7 @@ class add_account_fragment : Fragment() {
         //https://yuuj.tistory.com/11
         my_account_add_account.setOnClickListener {
             activity?.let {
-                val intent = Intent(it, AddCountActivity::class.java)
+                val intent = Intent(it, Add_account_activity::class.java)
                 it.startActivityForResult(intent, 1)
             }
         }

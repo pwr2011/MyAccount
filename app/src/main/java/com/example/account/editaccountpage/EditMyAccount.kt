@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.account.R
 
-class EditMyAccount : AppCompatActivity() {
+class Edit_account_activity : AppCompatActivity() {
 
     val manager = supportFragmentManager
-    lateinit var show_my_account_tab: ShowMyAccountFragment
-    lateinit var edit_my_account_tab: EditMyAccountFragment
+    lateinit var show_my_account_tab: Show_account_fragment
+    lateinit var edit_my_account_tab: Edit_account_fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +22,12 @@ class EditMyAccount : AppCompatActivity() {
 
     fun show_account_tab(company_name: String) {
         //https://yuuj.tistory.com/entry/AndroidKotlin-Fragment%EB%A1%9C-%ED%83%AD-%EA%B5%AC%EC%A1%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%94%84%EB%9E%98%EA%B7%B8%EB%A8%BC%ED%8A%B8-%EA%B5%90%EC%B2%B4
-        show_my_account_tab =
-            ShowMyAccountFragment()
+        show_my_account_tab =Show_account_fragment()
         replaceFragment(show_my_account_tab,company_name)
     }
 
     fun show_edit_account_tab() {
-        edit_my_account_tab =
-            EditMyAccountFragment()
+        edit_my_account_tab = Edit_account_fragment()
         replaceFragment(edit_my_account_tab)
     }
 

@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.example.account.R
 import kotlinx.android.synthetic.main.activity_add_account.*
 
-class AddCountActivity : AppCompatActivity() {
+class Add_account_activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_account)
