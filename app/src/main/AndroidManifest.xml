@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Account">
-        <activity android:name=".navigation.EditMyAccount"></activity>
-        <activity android:name=".navigation.AddCountActivity" />
+        <activity android:name=".editaccountpage.EditMyAccount"></activity>
+        <activity android:name=".editaccountpage.AddCountActivity" />
         <activity android:name=".navigation.AddCoountActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".mainpage.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

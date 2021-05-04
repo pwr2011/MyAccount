@@ -1,4 +1,4 @@
-package com.example.account
+package com.example.account.mainpage
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,10 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.account.navigation.SummaryFragment
-import com.example.account.navigation.MyAccountFragment
+import com.example.account.*
+import com.example.account.dataclass.Company
+import com.example.account.dataclass.Stock
+import com.example.account.editaccountpage.add_account_fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -21,19 +23,19 @@ var my_account_array = ArrayList<Company>()
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     val manager = supportFragmentManager
-    lateinit var summary_tab: SummaryFragment
-    lateinit var my_tab: MyAccountFragment
+    lateinit var summary_tab: summary_fragment
+    lateinit var add_account_tab: add_account_fragment
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_my_account -> {
-                my_tab = MyAccountFragment()
+                add_account_tab = add_account_fragment()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_content, my_tab).commit()
+                    .replace(R.id.main_content, add_account_tab).commit()
                 return true
             }
             R.id.action_summary -> {
-                summary_tab = SummaryFragment()
+                summary_tab = summary_fragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_content, summary_tab).commit()
                 return true
@@ -63,7 +65,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 1->{
                     if(data!!.hasExtra("company")){
                         var company_name = data!!.getStringExtra("company").toString()
-                        my_account_array.add(Company(company_name, 0.0,ArrayList<Stock>()))
+                        my_account_array.add(
+                            Company(
+                                company_name,
+                                0.0,
+                                ArrayList<Stock>()
+                            )
+                        )
                         Write_Company_Append("\n"+company_name)
                     }
                     else{
@@ -80,13 +88,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     fun show_summary_tab() {
         //https://yuuj.tistory.com/entry/AndroidKotlin-Fragment%EB%A1%9C-%ED%83%AD-%EA%B5%AC%EC%A1%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%94%84%EB%9E%98%EA%B7%B8%EB%A8%BC%ED%8A%B8-%EA%B5%90%EC%B2%B4
-        summary_tab = SummaryFragment()
+        summary_tab = summary_fragment()
         replaceFragment(summary_tab)
     }
 
     fun show_my_tab() {
-        my_tab = MyAccountFragment()
-        replaceFragment(my_tab)
+        add_account_tab = add_account_fragment()
+        replaceFragment(add_account_tab)
     }
 
     //출처: https://mc10sw.tistory.com/16 [Make it possible]
@@ -124,7 +132,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         println(line)
                         val company_name = line.toString()
                         if(company_name.length>0) {
-                            my_account_array.add(Company(company_name,0.0,ArrayList<Stock>()))
+                            my_account_array.add(
+                                Company(
+                                    company_name,
+                                    0.0,
+                                    ArrayList<Stock>()
+                                )
+                            )
                         }
                     }
                 }
@@ -152,7 +166,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         var company = my_account_array.find({it.name==data[0]})
                         if(company != null) {
                             company.total+=(data[2].toInt()*data[3].toDouble())
-                            company.own.add(Stock(data[1], data[2].toInt(), data[3].toDouble()))
+                            company.own.add(
+                                Stock(
+                                    data[1],
+                                    data[2].toInt(),
+                                    data[3].toDouble()
+                                )
+                            )
                         }
                     }
                 }

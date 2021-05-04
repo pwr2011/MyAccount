@@ -1,4 +1,4 @@
-package com.example.account.navigation
+package com.example.account.editaccountpage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.account.navigation
+package com.example.account.editaccountpage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.account.R
-import com.example.account.my_account_array
-import kotlinx.android.synthetic.main.fragment_my_account.*
+import com.example.account.mainpage.my_account_array
 import kotlinx.android.synthetic.main.fragment_show_my_account.*
-import kotlinx.android.synthetic.main.show_stock_info.*
-import kotlinx.android.synthetic.main.show_stock_info.view.*
+import kotlinx.android.synthetic.main.object_table_row_stock.view.*
 
 class ShowMyAccountFragment : Fragment() {
 
@@ -20,7 +18,7 @@ class ShowMyAccountFragment : Fragment() {
         var company = my_account_array.find { it.name == company_name }
         for(i in company!!.own){
             var row: View =
-                LayoutInflater.from(context).inflate(R.layout.show_stock_info, null, false)
+                LayoutInflater.from(context).inflate(R.layout.object_table_row_stock, null, false)
             row.stock_name.setText(i.name)
             row.stock_count.setText(i.count.toString())
             row.stock_count.setText(i.avg_price.toString())

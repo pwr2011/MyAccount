@@ -1,23 +1,10 @@
-package com.example.account.navigation
+package com.example.account.editaccountpage
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.account.R
-import com.example.account.my_account_array
-import kotlinx.android.synthetic.main.account_table_bottom.view.*
-import kotlinx.android.synthetic.main.account_table_top.view.*
-import kotlinx.android.synthetic.main.activity_add_count.*
-import kotlinx.android.synthetic.main.activity_edit_my_account.*
-import kotlinx.android.synthetic.main.fragment_my_account.*
-import kotlinx.android.synthetic.main.fragment_show_my_account.*
 
 class EditMyAccount : AppCompatActivity() {
 
@@ -35,12 +22,14 @@ class EditMyAccount : AppCompatActivity() {
 
     fun show_account_tab(company_name: String) {
         //https://yuuj.tistory.com/entry/AndroidKotlin-Fragment%EB%A1%9C-%ED%83%AD-%EA%B5%AC%EC%A1%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%94%84%EB%9E%98%EA%B7%B8%EB%A8%BC%ED%8A%B8-%EA%B5%90%EC%B2%B4
-        show_my_account_tab = ShowMyAccountFragment()
+        show_my_account_tab =
+            ShowMyAccountFragment()
         replaceFragment(show_my_account_tab,company_name)
     }
 
     fun show_edit_account_tab() {
-        edit_my_account_tab = EditMyAccountFragment()
+        edit_my_account_tab =
+            EditMyAccountFragment()
         replaceFragment(edit_my_account_tab)
     }
 

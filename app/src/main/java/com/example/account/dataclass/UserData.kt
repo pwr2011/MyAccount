@@ -1,4 +1,4 @@
-package com.example.account
+package com.example.account.dataclass
 
 data class Stock(var name : String, var count : Int, var avg_price : Double)
 

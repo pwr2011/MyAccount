@@ -1,18 +1,16 @@
-package com.example.account.navigation
+package com.example.account.editaccountpage
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.account.*
-import kotlinx.android.synthetic.main.activity_add_count.*
-import java.io.Serializable
+import com.example.account.R
+import kotlinx.android.synthetic.main.activity_add_account.*
 
 class AddCountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_count)
+        setContentView(R.layout.activity_add_account)
 
         add_account_button.setOnClickListener {
             val intent = Intent()

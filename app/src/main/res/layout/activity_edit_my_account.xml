@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.EditMyAccount">
+    tools:context=".editaccountpage.EditMyAccount">
 
     <FrameLayout
         android:id="@+id/sub_content"

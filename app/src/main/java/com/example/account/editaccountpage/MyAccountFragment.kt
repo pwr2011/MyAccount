@@ -1,4 +1,4 @@
-package com.example.account.navigation
+package com.example.account.editaccountpage
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,20 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.account.R
-import com.example.account.my_account_array
-import kotlinx.android.synthetic.main.account_table_bottom.view.*
-import kotlinx.android.synthetic.main.account_table_top.view.*
-import kotlinx.android.synthetic.main.activity_add_count.view.*
-import kotlinx.android.synthetic.main.fragment_my_account.*
+import com.example.account.R.layout.object_table_row_account_bottom
+import com.example.account.R.layout.object_table_row_account_top
+import com.example.account.mainpage.my_account_array
+import kotlinx.android.synthetic.main.fragment_add_account.*
+import kotlinx.android.synthetic.main.object_table_row_account_bottom.view.*
+import kotlinx.android.synthetic.main.object_table_row_account_top.view.*
 
 
-class MyAccountFragment : Fragment() {
+class add_account_fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var view =
-            LayoutInflater.from(activity).inflate(R.layout.fragment_my_account, container, false)
+            LayoutInflater.from(activity).inflate(R.layout.fragment_add_account, container, false)
 //        row_upper =
 //            LayoutInflater.from(activity).inflate(R.layout.account_table_top, container, false)
         return view
@@ -41,8 +42,8 @@ class MyAccountFragment : Fragment() {
         //(이 방법으로 해결) https://stackoverflow.com/questions/18979187/how-to-get-viewgroup-after-inflate-layout-in-android
 
         for (i in my_account_array) {
-            var row_upper: View = LayoutInflater.from(activity).inflate(R.layout.account_table_top, null , false)
-            var row_bottom: View = LayoutInflater.from(activity).inflate(R.layout.account_table_bottom, null , false)
+            var row_upper: View = LayoutInflater.from(activity).inflate(object_table_row_account_top, null , false)
+            var row_bottom: View = LayoutInflater.from(activity).inflate(object_table_row_account_bottom, null , false)
             row_upper.account_name.setText(i.name)
             row_bottom.account_balance.setText((i.total).toString())
 
