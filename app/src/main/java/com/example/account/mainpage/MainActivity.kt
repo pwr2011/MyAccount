@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.account.*
 import com.example.account.dataclass.Company
 import com.example.account.dataclass.Stock
-import com.example.account.editaccountpage.add_account_fragment
+import com.example.account.editaccountpage.Show_all_account_fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     val manager = supportFragmentManager
     lateinit var summary_tab: summary_fragment
-    lateinit var add_account_tab: add_account_fragment
+    lateinit var add_account_tab: Show_all_account_fragment
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_my_account -> {
-                add_account_tab = add_account_fragment()
+                add_account_tab = Show_all_account_fragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_content, add_account_tab).commit()
                 return true
@@ -50,10 +50,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Load_file()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottom_navigation.setOnNavigationItemSelectedListener(this)
+
+        Load_file()
         show_summary_tab()
     }
 
@@ -79,7 +80,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                     }
                 }
                 2->{
-
                     Toast.makeText(this,"정보 수정 완료",Toast.LENGTH_SHORT).show()
                 }
             }
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     fun show_my_tab() {
-        add_account_tab = add_account_fragment()
+        add_account_tab = Show_all_account_fragment()
         replaceFragment(add_account_tab)
     }
 

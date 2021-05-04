@@ -10,7 +10,7 @@ import com.example.account.mainpage.my_account_array
 import kotlinx.android.synthetic.main.fragment_show_my_account.*
 import kotlinx.android.synthetic.main.object_table_row_stock.view.*
 
-class Show_account_fragment : Fragment() {
+class Show_account_detail_fragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

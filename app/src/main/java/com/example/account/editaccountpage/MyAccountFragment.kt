@@ -15,15 +15,13 @@ import kotlinx.android.synthetic.main.object_table_row_account_bottom.view.*
 import kotlinx.android.synthetic.main.object_table_row_account_top.view.*
 
 
-class add_account_fragment : Fragment() {
+class Show_all_account_fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var view =
             LayoutInflater.from(activity).inflate(R.layout.fragment_add_account, container, false)
-//        row_upper =
-//            LayoutInflater.from(activity).inflate(R.layout.account_table_top, container, false)
         return view
     }
 
@@ -50,12 +48,10 @@ class add_account_fragment : Fragment() {
             row_upper.edit_stock_button.setOnClickListener{
                 activity?.let {
                     val intent = Intent(it, Edit_account_activity::class.java)
-                    println("send : "+row_upper.account_name.text.toString())
                     intent.putExtra("company_name", row_upper.account_name.text.toString())
                     it.startActivityForResult(intent, 2)
                 }
             }
-
             account_table.addView(row_upper)
             account_table.addView(row_bottom)
         }
