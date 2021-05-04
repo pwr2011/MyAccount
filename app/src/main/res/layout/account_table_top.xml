@@ -18,9 +18,10 @@
         android:layout_weight="1" />
 
     <Button
+        android:id="@+id/edit_stock_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10sp"
-        android:text="주식 추가" />
+        android:text="주식 관리" />
 
 </TableRow>

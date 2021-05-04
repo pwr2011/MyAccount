@@ -1,37 +1,28 @@
 package com.example.account.navigation
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import com.example.account.*
-import kotlinx.android.synthetic.main.account_table_bottom.*
+import androidx.fragment.app.Fragment
+import com.example.account.R
+import com.example.account.my_account_array
 import kotlinx.android.synthetic.main.account_table_bottom.view.*
-import kotlinx.android.synthetic.main.account_table_top.*
 import kotlinx.android.synthetic.main.account_table_top.view.*
+import kotlinx.android.synthetic.main.activity_add_count.view.*
 import kotlinx.android.synthetic.main.fragment_my_account.*
-import kotlinx.android.synthetic.main.fragment_my_account.view.*
-import org.w3c.dom.Text
 
 
 class MyAccountFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         var view =
             LayoutInflater.from(activity).inflate(R.layout.fragment_my_account, container, false)
+//        row_upper =
+//            LayoutInflater.from(activity).inflate(R.layout.account_table_top, container, false)
         return view
     }
 
@@ -40,36 +31,35 @@ class MyAccountFragment : Fragment() {
     //            (activity as MainActivity).replaceFragment()
     //        }
     // fragment -> activity
+    // onViewCreated는 onCreateView 이후에 더 띄울 내용을 구성하는 함수
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //https://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
         //https://stackoverflow.com/questions/62986656/adding-rows-to-table-layout-in-kotlin
+        //https://stackoverflow.com/questions/28071349/the-specified-child-already-has-a-parent-you-must-call-removeview-on-the-chil
+        //(이 방법으로 해결) https://stackoverflow.com/questions/18979187/how-to-get-viewgroup-after-inflate-layout-in-android
+
         for (i in my_account_array) {
-            var account_table : TableLayout = this.requireActivity().account_table
-            var row_upper: TableRow = TableRow(this.requireActivity())
-            var row_bottom: TableRow = TableRow(this.requireActivity())
-            //var row = TableRow(context)
+            var row_upper: View = LayoutInflater.from(activity).inflate(R.layout.account_table_top, null , false)
+            var row_bottom: View = LayoutInflater.from(activity).inflate(R.layout.account_table_bottom, null , false)
+            row_upper.account_name.setText(i.name)
+            row_bottom.account_balance.setText((i.total).toString())
 
+            row_upper.edit_stock_button.setOnClickListener{
 
+            }
 
-            val account_name : TextView = TextView(requireActivity())
-            account_name.setText(i.name)
-            val total : TextView = TextView(requireActivity())
-            total.setText((i.total).toString())
-            row_upper.addView(account_name)
-            row_bottom.addView(total)
-            //여기까지는 ㄱㅊ
             account_table.addView(row_upper)
-            println("add view")
             account_table.addView(row_bottom)
         }
-//
-//        //https://yuuj.tistory.com/11
-//        my_account_add_account.setOnClickListener {
-//            activity?.let {
-//                val intent = Intent(it, AddCountActivity::class.java)
-//                it.startActivityForResult(intent, 1)
-//            }
-//        }
+
+        //https://yuuj.tistory.com/11
+        my_account_add_account.setOnClickListener {
+            activity?.let {
+                val intent = Intent(it, AddCountActivity::class.java)
+                it.startActivityForResult(intent, 1)
+            }
+        }
     }
 }
