@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.fragment_show_my_account.*
 
 class Edit_account_activity : AppCompatActivity() {
 
-    val manager = supportFragmentManager
     lateinit var show_my_account_tab: Show_account_detail_fragment
     lateinit var edit_my_account_tab: Edit_account_fragment
 
@@ -19,6 +18,13 @@ class Edit_account_activity : AppCompatActivity() {
 
         var company_name = intent?.getStringExtra("company_name").toString()
         show_account_tab(company_name)
+    }
+
+    fun refresh_fragment(tab: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .attach(tab)
+            .commit()
+        //show_edit_account_tab()
     }
 
     fun show_account_tab(company_name: String) {
