@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.account.*
 import com.example.account.dataclass.Company
 import com.example.account.dataclass.Stock
-import com.example.account.editaccountpage.Show_all_account_fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -29,7 +28,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_my_account -> {
-                add_account_tab = Show_all_account_fragment()
+                add_account_tab =
+                    Show_all_account_fragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_content, add_account_tab).commit()
                 return true
@@ -93,7 +93,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     fun show_my_tab() {
-        add_account_tab = Show_all_account_fragment()
+        add_account_tab =
+            Show_all_account_fragment()
         replaceFragment(add_account_tab)
     }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editaccountpage.Edit_stock_fragment">
+
+    <LinearLayout
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/input_stock_name"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="종목 이름" />
+
+        <EditText
+            android:id="@+id/input_stock_count"
+            android:layout_marginTop="10sp"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="구입 개수" />
+
+        <EditText
+            android:id="@+id/input_stock_avg_price"
+            android:layout_marginTop="10sp"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="개당 구매 단가" />
+        <Button
+            android:id="@+id/edit_complete_button"
+            android:layout_marginTop="20sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="완료"/>
+    </LinearLayout>
+</FrameLayout>

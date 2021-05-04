@@ -1,8 +1,13 @@
 package com.example.account.dataclass
 
-data class Stock(var name : String, var count : Int, var avg_price : Double)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-data class Company(
-    var name: String,
-    var total: Double,
-    var own: ArrayList<Stock> )
+@Parcelize
+data class Stock(var name : String, var count : Int, var avg_price : Double):Parcelable
+
+@Parcelize
+data class Company (var name: String,
+                    var total: Double,
+                    var own: ArrayList<Stock> ): Parcelable

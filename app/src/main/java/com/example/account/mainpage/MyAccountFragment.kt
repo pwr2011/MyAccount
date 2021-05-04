@@ -1,4 +1,4 @@
-package com.example.account.editaccountpage
+package com.example.account.mainpage
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import com.example.account.R
 import com.example.account.R.layout.object_table_row_account_bottom
 import com.example.account.R.layout.object_table_row_account_top
-import com.example.account.mainpage.my_account_array
+import com.example.account.editaccountpage.Add_account_activity
+import com.example.account.editaccountpage.Edit_account_activity
 import kotlinx.android.synthetic.main.fragment_add_account.*
 import kotlinx.android.synthetic.main.object_table_row_account_bottom.view.*
 import kotlinx.android.synthetic.main.object_table_row_account_top.view.*
