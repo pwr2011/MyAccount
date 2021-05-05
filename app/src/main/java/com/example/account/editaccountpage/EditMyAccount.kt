@@ -1,62 +1,59 @@
 package com.example.account.editaccountpage
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import android.view.LayoutInflater
+import android.view.View
 import com.example.account.R
-import kotlinx.android.synthetic.main.fragment_show_my_account.*
+import com.example.account.dataclass.Company
+import com.example.account.dataclass.Stock
+import com.example.account.mainpage.my_account_array
+import kotlinx.android.synthetic.main.activity_edit_my_account.*
+import kotlinx.android.synthetic.main.object_table_row_stock.view.*
 
 class Edit_account_activity : AppCompatActivity() {
 
-    lateinit var show_my_account_tab: Show_account_detail_fragment
-    lateinit var edit_my_account_tab: Edit_account_fragment
+    lateinit var company_name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_my_account)
 
-        var company_name = intent?.getStringExtra("company_name").toString()
-        show_account_tab(company_name)
+        company_name = intent?.getStringExtra("company_name").toString()
+        var company: Company? = my_account_array.find { it.name == company_name }
+
+        for (i in company!!.own) {
+            var row: View =
+                LayoutInflater.from(this).inflate(R.layout.object_table_row_stock, null, false)
+            row.stock_name.setText(i.name)
+            row.stock_count.setText(i.count.toString())
+            row.stock_avg_price.setText(i.avg_price.toString())
+
+            display_stock_in_account.addView(row)
+        }
+        add_stock_button.setOnClickListener {
+            var intent = Intent(this, Edit_stock_activity:: class.java)
+            intent.putExtra("Company",company_name)
+            startActivityForResult(intent, 1)
+        }
     }
 
-    fun refresh_fragment(tab: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .attach(tab)
-            .commit()
-        //show_edit_account_tab()
-    }
-
-    fun show_account_tab(company_name: String) {
-        //https://yuuj.tistory.com/entry/AndroidKotlin-Fragment%EB%A1%9C-%ED%83%AD-%EA%B5%AC%EC%A1%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%94%84%EB%9E%98%EA%B7%B8%EB%A8%BC%ED%8A%B8-%EA%B5%90%EC%B2%B4
-        show_my_account_tab = Show_account_detail_fragment()
-        replaceFragment(show_my_account_tab, company_name)
-    }
-
-    fun show_edit_account_tab() {
-        edit_my_account_tab = Edit_account_fragment()
-        replaceFragment(edit_my_account_tab)
-    }
-
-    //https://medium.com/hongbeomi-dev/fragment-%EC%9E%98-%EC%8D%A8%EB%B3%B4%EA%B8%B0-bundle-c2fd8fe96967
-    //출처: https://mc10sw.tistory.com/16 [Make it possible]
-    fun replaceFragment(tab: Fragment, company_name: String) {
-        // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.sub_content, tab.apply {
-                arguments = Bundle().apply {
-                    putString("company_name", company_name)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when (requestCode){
+                1->{
+                    println("갱신된 company result")
+                    my_account_array.forEach{i->println(i)}
+                    refresh_activity()
                 }
-            })
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
+            }
+        }
     }
 
-    fun replaceFragment(tab: Fragment) {
-        // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.sub_content, tab)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
+    fun refresh_activity() {
+        recreate()
     }
 }
