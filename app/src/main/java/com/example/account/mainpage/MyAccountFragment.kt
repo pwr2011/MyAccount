@@ -1,10 +1,12 @@
 package com.example.account.mainpage
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.account.R
 import com.example.account.R.layout.object_table_row_account_bottom
@@ -27,11 +29,11 @@ class Show_all_account_fragment : Fragment() {
     }
 
     // fragment -> another fragment로 이동
-    // my_account_add_account.setOnClickListener{
-    //            (activity as MainActivity).replaceFragment()
-    //        }
-    // fragment -> activity
-    // onViewCreated는 onCreateView 이후에 더 띄울 내용을 구성하는 함수
+// my_account_add_account.setOnClickListener{
+//            (activity as MainActivity).replaceFragment()
+//        }
+// fragment -> activity
+// onViewCreated는 onCreateView 이후에 더 띄울 내용을 구성하는 함수
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,12 +43,14 @@ class Show_all_account_fragment : Fragment() {
         //(이 방법으로 해결) https://stackoverflow.com/questions/18979187/how-to-get-viewgroup-after-inflate-layout-in-android
 
         for (i in my_account_array) {
-            var row_upper: View = LayoutInflater.from(activity).inflate(object_table_row_account_top, null , false)
-            var row_bottom: View = LayoutInflater.from(activity).inflate(object_table_row_account_bottom, null , false)
+            var row_upper: View =
+                LayoutInflater.from(activity).inflate(object_table_row_account_top, null, false)
+            var row_bottom: View =
+                LayoutInflater.from(activity).inflate(object_table_row_account_bottom, null, false)
             row_upper.account_name.setText(i.name)
             row_bottom.account_balance.setText((i.total).toString())
 
-            row_upper.edit_stock_button.setOnClickListener{
+            row_upper.edit_stock_button.setOnClickListener {
                 activity?.let {
                     val intent = Intent(it, Edit_account_activity::class.java)
                     intent.putExtra("company_name", row_upper.account_name.text.toString())

@@ -53,6 +53,12 @@ class Edit_account_activity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_OK, intent)
+        super.onBackPressed()
+        finish()
+    }
+
     fun refresh_activity() {
         recreate()
     }

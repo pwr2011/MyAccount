@@ -20,4 +20,10 @@ class Add_account_activity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
 }

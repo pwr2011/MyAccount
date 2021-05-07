@@ -66,24 +66,32 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 1->{
                     if(data!!.hasExtra("company")){
                         var company_name = data!!.getStringExtra("company").toString()
-                        my_account_array.add(
-                            Company(
-                                company_name,
-                                0.0,
-                                ArrayList<Stock>()
-                            )
-                        )
-                        Write_Company_Append("\n"+company_name)
+                        println("received company name : "+company_name)
+                        data_refresh(company_name)
                     }
                     else{
                         Toast.makeText(this,"전달된 이름에 오류가 있다.",Toast.LENGTH_SHORT).show()
                     }
                 }
                 2->{
-                    Toast.makeText(this,"정보 수정 완료",Toast.LENGTH_SHORT).show()
+                    fragment_refresh()
                 }
             }
         }
+    }
+
+    fun data_refresh(company_name:String){
+        Write_Company_Append(company_name+"\n")
+        my_account_array.add(Company(company_name,0.0,ArrayList<Stock>()))
+        fragment_refresh()
+    }
+
+    fun fragment_refresh(){
+        supportFragmentManager
+            .beginTransaction()
+            .detach(this.add_account_tab)
+            .attach(this.add_account_tab)
+            .commit()
     }
 
     fun show_summary_tab() {
@@ -93,6 +101,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     fun show_my_tab() {
+        println("Show my tab in!")
         add_account_tab =
             Show_all_account_fragment()
         replaceFragment(add_account_tab)
@@ -100,6 +109,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     //출처: https://mc10sw.tistory.com/16 [Make it possible]
     fun replaceFragment(tab: Fragment) {
+        println("repalce!!")
         // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_content, tab)
@@ -121,6 +131,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     //수정중
     fun Load_file() {
+        my_account_array.clear()
         // 계좌 정보 Load
         try {
             val file = File(filesDir, "UserCompanyData.txt")
